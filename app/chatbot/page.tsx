@@ -1,13 +1,12 @@
 "use client"
 
-import { useState } from "react"
+import { useState, Suspense } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Chatbot } from "@/components/chatbot"
 import { LanguageSelector } from "@/components/language-selector"
 import { Button } from "@/components/ui/button"
 import { Mic, MicOff } from "lucide-react"
-
 
 export default function ChatbotPage() {
   const [voiceMode, setVoiceMode] = useState(true)
@@ -31,10 +30,15 @@ export default function ChatbotPage() {
             </Button>
           </div>
         </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
-            <Chatbot voiceMode={voiceMode} language={selectedLanguage} />
+            {/* 🔧 Wrapped Chatbot in Suspense */}
+            <Suspense fallback={<div>Loading chatbot...</div>}>
+              <Chatbot voiceMode={voiceMode} language={selectedLanguage} />
+            </Suspense>
           </div>
+
           <div className="bg-white p-6 rounded-lg shadow-sm border">
             <h2 className="text-xl font-semibold mb-4">How to Use the Chatbot</h2>
             <div className="space-y-4">
