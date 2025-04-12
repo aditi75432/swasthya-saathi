@@ -1,12 +1,19 @@
 "use client"
 
 import { useState, Suspense } from "react"
+import dynamic from "next/dynamic"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Chatbot } from "@/components/chatbot"
 import { LanguageSelector } from "@/components/language-selector"
 import { Button } from "@/components/ui/button"
 import { Mic, MicOff } from "lucide-react"
+
+// ✅ Dynamically import Chatbot with suspense
+const Chatbot = dynamic(() => import("@/components/chatbot").then(mod => mod.Chatbot), {
+  ssr: false,
+  suspense: true,
+} as any)
+
 
 export default function ChatbotPage() {
   const [voiceMode, setVoiceMode] = useState(true)
@@ -33,7 +40,7 @@ export default function ChatbotPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
-            {/* 🔧 Wrapped Chatbot in Suspense */}
+            {/* ✅ Wrap in Suspense */}
             <Suspense fallback={<div>Loading chatbot...</div>}>
               <Chatbot voiceMode={voiceMode} language={selectedLanguage} />
             </Suspense>
