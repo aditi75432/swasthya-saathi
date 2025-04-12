@@ -3,7 +3,10 @@
 # 🌿 SwasthyaSaathi – Your AI Health Companion  
 **Empowering India’s underserved communities with accessible, multilingual, and AI-powered healthcare scheme navigation.**  
 
+https://github.com/user-attachments/assets/0d07beef-fdfd-4ce6-ba01-ad1c97c8c3d6
+
 ---
+
 
 ## 🚀 Solution Overview
 
